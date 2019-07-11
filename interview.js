@@ -15,7 +15,7 @@ HTML
 CSS
 1.(必考) 说说盒模型
   content-box: width === 内容区宽度
-  border-box：width === 内容区宽度 + padding
+  border-box：width === 内容区宽度 + padding + border
 2. css reset 和 normalize.css 有什么区别？
   - reset 重置，抛弃默认样式。
   - normalize 让所有浏览器的标签都跟标准规定的默认样式一致，
