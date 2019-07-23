@@ -1,243 +1,177 @@
-### interview
+## interview
 
 ---
 写了一些针对前端面试的笔记。
 
 
-// 
-HTML
-1.(必考) 你是如何理解HTML语义化的？
-<<<<<<< HEAD
-  举例：段落用 p，边栏用 aside，主要内容用 main 标签。
-2. meta viewport 是做什么用的，怎么写？
-  背：<meta name="viewport" content="width=device-width(宽度等于设备宽度),
-  user-scalable=no(用户不准放大缩小),initial-scale=1.0(一开始的倍数),
-  maximum-scale=1.0(最大倍数), minimum=1.0(最小倍数)">
-  作用：控制页面在移动端不要缩小显示。
-3. canvas 元素是干什么的？
-  canvas 是 HTML5 新增的元素，可用于通过使用js中的脚本来绘制图形。
-  自己做的 canvas 项目
-=======
-  - 根据内容选择合适的标签，便于阅读和书写，举例：段落用 p，边栏用 aside，主要内容用 main 标签。
-2. meta viewport 是做什么用的，怎么写？
-  - 背：meta name="viewport" content="width=device-width(宽度等于设备宽度),
-  user-scalable=no(用户不准放大缩小),initial-scale=1.0(一开始的倍数),
-  maximum-scale=1.0(最大倍数), minimum=1.0(最小倍数)"
-  - 作用：控制页面在移动端不要缩小显示。
-3. canvas 元素是干什么的？
-  - canvas 是 HTML5 新增的元素，可用于通过使用js中的脚本来绘制图形。
-  - 自己做的 canvas 项目
-    先添加一个 canvas 标签，再用 getContext（'2d'） 中的属性和方法，还有我这个画板是移动端和网     页都可以使用的，移动端我监听的事件是 ontouch，网页的是 onmouse。
->>>>>>> 3d5bd5dc522c0008902833a0b2276208279b1c86
+### HTML
+1. (必考) 你是如何理解HTML语义化的？
+    - 根据内容选择合适的标签，便于阅读和书写，举例：段落用 p，边栏用 aside，主要内容用 main 标签。
 
-//
-CSS
-1.(必考) 说说盒模型
-<<<<<<< HEAD
-  content-box: width === 内容区宽度
-  border-box：width === 内容区宽度 + padding + border
-=======
-  - content-box: width === 内容区宽度
-  - border-box：width === 内容区宽度 + padding + border
->>>>>>> 3d5bd5dc522c0008902833a0b2276208279b1c86
+2. meta viewport 是做什么用的，怎么写？
+    - 背：
+    ```CSS
+     meta name="viewport" content="width=device-width(宽度等于设备宽度), user-scalable=no(用户不准放大缩小),initial-scale=1.0(一开始的倍数), maximum-scale=1.0(最大倍数), minimum=1.0(最小倍数)"
+    ```
+    - 作用：控制页面在移动端不要缩小显示。
+3. canvas 元素是干什么的？
+    - canvas 是 HTML5 新增的元素，可用于通过使用js中的脚本来绘制图形。
+    - 自己做的 canvas 项目
+    先添加一个 canvas 标签，再用 getContext（'2d'） 中的属性和方法，还有我这个画板是移动端和网     页都可以使用的，移动端我监听的事件是 ontouch，网页的是 onmouse。
+
+
+### CSS
+
+1. (必考) 说说盒模型
+    - content-box: width === 内容区宽度
+    - border-box：width === 内容区宽度 + padding + border
 2. css reset 和 normalize.css 有什么区别？
-  - reset 重置，抛弃默认样式。
-  - normalize 让所有浏览器的标签都跟标准规定的默认样式一致，
-    各浏览器上的默认标签样式基本统一。
-3.(必考) 如何居中？
-<<<<<<< HEAD
-  水平居中：
-    内联元素：爸爸身上写 text-align；center；
-    块级元素：margin-left：auto；margin-right：auto；
-  垂直居中：
-    -table 自带功能
-    -把 div 装成 table (display: table)
-=======
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  水平居中：
+    - reset 重置，抛弃默认样式。
+    - normalize 让所有浏览器的标签都跟标准规定的默认样式一致，
+    - 各浏览器上的默认标签样式基本统一。
+
+3. (必考) 如何居中？
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    水平居中：
     内联元素：爸爸身上写 text-align；center；
     块级元素：margin：0 auto；
-  垂直居中：
->>>>>>> 3d5bd5dc522c0008902833a0b2276208279b1c86
-    -父元素：display：flex；
+    
+    垂直居中：
+    - 父元素：display：flex；
      子元素：align-self：center；
-    -display：inline-block；
+    - display：inline-block；
      vertical-align：middle；
-    -父元素：position：relative；
+    - 父元素：position：relative；
      子元素：position：absolute；
             top：50%；
             transform：translateY（-50%）；
 4. 选择器优先级如何确定？
-  -选择越具体，优先级越高。
-  -同样优先级，写在后面的覆盖前面的。
-  -！important 优先级最高。
+    - 选择越具体，优先级越高。
+    - 同样优先级，写在后面的覆盖前面的。
+    - ！important 优先级最高。
 5. BFC 是什么？
-  -overflow：hidden；清除浮动/取消父子 margin 合并
-<<<<<<< HEAD
-  -.clearfix:after {
-=======
-  -.clearfix::after {
->>>>>>> 3d5bd5dc522c0008902833a0b2276208279b1c86
+    - overflow：hidden；清除浮动/取消父子 margin 合并
+    - .clearfix::after {
       content: "\0020";
       display: block;
       height: 0;
       clear: both;
-  }
-<<<<<<< HEAD
-  .clearfix::after {
+    }
+    .clearfix::after {
     content: '';
     diaplay: block;
     clear: both;
-  }
+    }
 6. 如何清除浮动？
-  -overflow：hidden；清除浮动/取消父子 margin 合并
-  -.clearfix:after {/* 写在父亲身上 */
+   - overflow：hidden；清除浮动/取消父子 margin 合并
+   - .clearfix:"after {/* 写在父亲身上 */
       content: "";
       display: block;
-=======
-6. 如何清除浮动？
-  -overflow：hidden；清除浮动/取消父子 margin 合并
-  -.clearfix::after {/* 写在父亲身上 */
-      content: "";
-      display: block;// 可以设置宽高 并独占一行
->>>>>>> 3d5bd5dc522c0008902833a0b2276208279b1c86
       clear: both;
-  }
+   }
    .clearfix{
        zoom: 1;/* 兼容IE*/
    }
-<<<<<<< HEAD
-
-=======
 7.css3 动画
-  - @keyframe XXX {
+   - @keyframe XXX {
     from{} to{}}
     animation: XXX 3s;
-  - transform 有 translate 和 rotate 等方法，
-    transtion 变化和时间
+   - transform 有 translate 和 rotate 等方法，transtion 变化和时间
     
->>>>>>> 3d5bd5dc522c0008902833a0b2276208279b1c86
-//
-JS
+
+### JS
 1. JS有哪些数据类型？
-  string bool symbol number undefined null object
-  object 包括 数组、函数、正则、日期等对象。
-2.(必考)Promise 怎么使用？
-  -then 的用法
-  $.ajax().then(成功函数，失败函数)
-  -链式 then
-  $.ajax().then(成功函数，失败函数).then(成功函数2，失败函数2)
-  -如何自己生成 Promise
-  function xxx() {
+
+   string bool symbol number undefined null object
+
+   object 包括 数组、函数、正则、日期等对象。
+2. (必考)Promise 怎么使用？
+    - then 的用法
+    $.ajax().then(成功函数，失败函数)
+    - 链式 then
+    $.ajax().then(成功函数，失败函数).then(成功函数2，失败函数2)
+    - 如何自己生成 Promise
+    ```JavaScript
+    function xxx() {
       return new Promise(function(resolve, reject) {
           setTimeout(() => {
               resolve() 或者 reject()
           },3000)
       })
-  }
-  xxx().then()
-<<<<<<< HEAD
-
-  function XXX() {
-    return new Promise(function(resolve, reject) {
-      setTimeout(() => {
-        resolve() 或者 reject（）
-      }, 3000)
-    })
-  }
-   xxx().then()
-=======
->>>>>>> 3d5bd5dc522c0008902833a0b2276208279b1c86
-3.(必考) ajax手写
-  let xhr = new XMLHttpRequest()
-  xhr.open(method, path, true)
-  xhr.onreadystatechange = function() {
-<<<<<<< HEAD
-    if(xhr.readState === 4 && xhr.status === 200) {
-      console.log(xhr.responseText)
     }
-  }
-  xhr.send(data)
-
-  let xhr = new XMLHttpRequest()
-  xhr.open(method, path, true)
-  xhr.onreadystatechage = function() {
-    if(xhr.readState === 4) &&
-    xhr.status === 200) {
-      console.log(xhr.responseText)
-    }
-=======
+    xxx().then()
+    ```
+3. (必考) ajax手写
+    ```javaScript
+    let xhr = new XMLHttpRequest()
+    xhr.open(method, path, true)
+    xhr.onreadystatechange = function() {
       if(xhr.readState === 4 && xhr.status === 200) {
           console.log(xhr.responseText)
       }
->>>>>>> 3d5bd5dc522c0008902833a0b2276208279b1c86
-  }
-  xhr.send(data)
-4.(必考) 闭包是什么？
-  函数 和 函数内部能访问到的变量 的总和，就是一个闭包。
-  function createAdder() {
+    }
+    xhr.send(data)
+    ```
+4. (必考) 闭包是什么？
+    函数 和 函数内部能访问到的变量 的总和，就是一个闭包。
+    ```javaScript
+    function createAdder() {
     var n = 0
     return function() {
         n += 1
     }
-  }
-  let adder = createAdder()
-  adder()// n === 1
-  adder()// n === 2
-  console.log(n)// n is not defined
-<<<<<<< HEAD
-
-  function a() {
-    var x = 0
-    return function() {
-      x += 1
     }
-  }
-  var n = a()
-  n()// x === 1
-  n()// x === 2
-=======
->>>>>>> 3d5bd5dc522c0008902833a0b2276208279b1c86
-5.(必考) 这段代码里的 this 是什么？
-  -fn() 里面的 this 就是 window
-  -fn() 是 strict mode，this 就是 undefined
-  -a.fn() 里面的 this 就是 a
-  -new fn() 里面的 this 就是新生成的实例
-  -fn() => console.log(this) 里面的 this 就是外面的 this
-6.(必考) 什么是立即执行函数，使用立即函数的目的是什么?
-  (function(){}())
-  造出一个函数作用域，防止污染全局变量//声明局部变量
-  相当于 ES6 中新语法 {let name}
+    let adder = createAdder()
+    adder()// n === 1
+    adder()// n === 2
+    console.log(n)// n is not defined
+    ```
+5. (必考) 这段代码里的 this 是什么？
+    - fn() 里面的 this 就是 window
+    - fn() 是 strict mode，this 就是 undefined
+    - a.fn() 里面的 this 就是 a
+    - new fn() 里面的 this 就是新生成的实例
+    - fn() => console.log(this) 里面的 this 就是外面的 this
+6. (必考) 什么是立即执行函数，使用立即函数的目的是什么?
+
+    (function(){}())
+    造出一个函数作用域，防止污染全局变量//声明局部变量
+
+    相当于 ES6 中新语法 {let name}
 7. async/await 语法了解吗？目的是什么？
-  function returnPromise() {
+    ```javaScript
+    function returnPromise() {
       return new Promise(function(resolve, reject){
           setTimeout(() => {
               resolve('resolved');
           },3000)
       })
-  }
-  //用 then
-  returnPromise().then((result) => {
+    }
+    ```
+    //用 then
+    returnPromise().then((result) => {
       result === 'resolved'
-  })
-  //用 await
-  var result = await returnPromise()
-  result === 'resolved'
+    })
+    //用 await
+    var result = await returnPromise()
+    result === 'resolved'
 
-  目的是把异步代码写成同步代码。
+    目的是把异步代码写成同步代码。
 8. 如何实现深拷贝？
-  -JSON 拷贝
-  var a = {}//对象
-  var b = JSON.parse(JSON.stringify(a))
-  //把对象变成字符串 再从字符串中生成一个对象
-  缺点：JSON 不支持 函数、引用、undefined..
-  -递归拷贝
+    - JSON 拷贝
+    var a = {}//对象
+    var b = JSON.parse(JSON.stringify(a))
+    //把对象变成字符串 再从字符串中生成一个对象
+    缺点：JSON 不支持 函数、引用、undefined..
 
 9. 如何实现数组去重
-  -Set 去重
-  Array.from(new Set(a))
+   
+    - Set 去重
+    Array.from(new Set(a))
 10. 如何使用正则实现 string.trim()
   function trim(string) {
     return string.replace(/^\s+|\s+$/,'')
@@ -304,12 +238,7 @@ DOM
   -myButtom.onclick = function(event) {alert('hello world')}
 2. 移动端的触摸事件了解吗？
   -touchstart touchmove touchend touchcancel
-<<<<<<< HEAD
   -模拟 swipe 事件：记录两次 touchmove 的位置差，如果后一次在前一次的右边，说明向右了。
-=======
-  -模拟 swipe 事件：记录两次 touchmove 的位置差，
-   如果后一次在前一次的右边，说明向右划了。
->>>>>>> 3d5bd5dc522c0008902833a0b2276208279b1c86
 3. 事件委托是什么？有什么好处？
   通过监听一个父元素，来得知触发事件的子元素或者是给不同的子元素绑定事件，这就是事件委托。
   -优点：
@@ -391,15 +320,9 @@ Vue
   -新增 errorCaptured 当捕获一个来自子孙组件的错误时被调用。此钩子会收到三个参数：错误对象、
    发生错误的组件实例以及一个包含错误来源信息的字符串。此钩子可以返回 false 以阻止该错误继续向上传播。
 2.(必考) Vue 如何实现组件通信？
-<<<<<<< HEAD
   -父子通信 Prop 传递数据、v-on 绑定自定义事件
   -爷孙通信
   -非父子通信 new vue（） 作为 eventbus（）
-=======
-  -父子通信
-  -爷孙通信
-  -非父子通信
->>>>>>> 3d5bd5dc522c0008902833a0b2276208279b1c86
 
 3. Vuex 的作用是什么？
   转为 Vue 应用程序开发的状态管理模式，它采用集中式储存管理应用的所有组件的状态，
@@ -410,7 +333,6 @@ Vue
   是用一些超链接来实现页面切换和跳转的，在 Vue-Router 单页面应用中，则是路径之间的切换，
   实际上就是组建的切换。路由就是 SPA(单页应用) 的路径管理器。
 5. Vue 的双向绑定是如何实现的？有什么缺点？
-<<<<<<< HEAD
   - v-model
   Vue 的双向绑定是语法糖
 
@@ -418,15 +340,6 @@ Vue
   - methods 是非响应式的一种交互方法，需要人为出触发。methods 没有缓存，只会在每次调用的时候执行。
   - computed 是响应式的计算属性，在检测到 data 数据变化时自动触发的。而且 computed 是带缓存的，
   只有其引用的响应式属性发生改变时才会重新计算。
-=======
-  
-
-6. Computed 计算属性的用法？跟Methods 的区别。
-  -
-  -区别 methods 是一种交互方法，需要人为出触发。methods 没有缓存，只会在每次调用的时候执行。
-       computed 是在检测到 data 数据变化时自动触发的。而且 computed 是带缓存的，
-       只有其引用的响应式属性发生改变时才会重新计算。
->>>>>>> 3d5bd5dc522c0008902833a0b2276208279b1c86
       
 
 //
@@ -440,7 +353,6 @@ Vue
   -归并排序
 
 2. 二分查找法
-<<<<<<< HEAD
   前提是个有序数组
   var Arr = [...]
   function binary(find, arr, low, high){
@@ -463,8 +375,6 @@ Vue
     return -1
   }
   binary(X, Arr, 0, Arr.length-1)
-=======
->>>>>>> 3d5bd5dc522c0008902833a0b2276208279b1c86
 
 3. 反转二叉树
   暂时不会没关系
@@ -473,7 +383,6 @@ Vue
 //
 安全
 1. 什么是 XSS　攻击？如何预防？
-<<<<<<< HEAD
   通过对网页注入可执行的代码且成功的被浏览器执行，达到攻击的目的。
   预防方法使用字符过滤。
 
@@ -481,11 +390,6 @@ Vue
   比如用户登陆了网页qq，随后切换到了一个恶意网站，恶意网站向用户提出加好友的申请，用户在不知不觉中加了好友。
   预防方法有 验证 http referer字段
   或者在请求地址添加 token 并验证
-=======
-
-2. 什么是 CSRF 攻击？ 如何预防？
-
->>>>>>> 3d5bd5dc522c0008902833a0b2276208279b1c86
 
 //
 Webpack
