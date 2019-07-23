@@ -53,6 +53,11 @@ CSS
       height: 0;
       clear: both;
   }
+  .clearfix::after {
+    content: '';
+    diaplay: block;
+    clear: both;
+  }
 6. 如何清除浮动？
   -overflow：hidden；清除浮动/取消父子 margin 合并
   -.clearfix:after {/* 写在父亲身上 */
@@ -83,13 +88,32 @@ JS
       })
   }
   xxx().then()
+
+  function XXX() {
+    return new Promise(function(resolve, reject) {
+      setTimeout(() => {
+        resolve() 或者 reject（）
+      }, 3000)
+    })
+  }
+   xxx().then()
 3.(必考) ajax手写
   let xhr = new XMLHttpRequest()
   xhr.open(method, path, true)
   xhr.onreadystatechange = function() {
-      if(xhr.readState === 4 && xhr.status === 200) {
-          console.log(xhr.responseText)
-      }
+    if(xhr.readState === 4 && xhr.status === 200) {
+      console.log(xhr.responseText)
+    }
+  }
+  xhr.send(data)
+
+  let xhr = new XMLHttpRequest()
+  xhr.open(method, path, true)
+  xhr.onreadystatechage = function() {
+    if(xhr.readState === 4) &&
+    xhr.status === 200) {
+      console.log(xhr.responseText)
+    }
   }
   xhr.send(data)
 4.(必考) 闭包是什么？
@@ -104,6 +128,16 @@ JS
   adder()// n === 1
   adder()// n === 2
   console.log(n)// n is not defined
+
+  function a() {
+    var x = 0
+    return function() {
+      x += 1
+    }
+  }
+  var n = a()
+  n()// x === 1
+  n()// x === 2
 5.(必考) 这段代码里的 this 是什么？
   -fn() 里面的 this 就是 window
   -fn() 是 strict mode，this 就是 undefined
@@ -208,8 +242,7 @@ DOM
   -myButtom.onclick = function(event) {alert('hello world')}
 2. 移动端的触摸事件了解吗？
   -touchstart touchmove touchend touchcancel
-  -模拟 swipe 事件：记录两次 touchmove 的位置差，
-   如果后一次在前一次的右边，说明向右划了。
+  -模拟 swipe 事件：记录两次 touchmove 的位置差，如果后一次在前一次的右边，说明向右了。
 3. 事件委托是什么？有什么好处？
   通过监听一个父元素，来得知触发事件的子元素或者是给不同的子元素绑定事件，这就是事件委托。
   -优点：
@@ -291,9 +324,9 @@ Vue
   -新增 errorCaptured 当捕获一个来自子孙组件的错误时被调用。此钩子会收到三个参数：错误对象、
    发生错误的组件实例以及一个包含错误来源信息的字符串。此钩子可以返回 false 以阻止该错误继续向上传播。
 2.(必考) Vue 如何实现组件通信？
-  -父子通信
+  -父子通信 Prop 传递数据、v-on 绑定自定义事件
   -爷孙通信
-  -非父子通信
+  -非父子通信 new vue（） 作为 eventbus（）
 
 3. Vuex 的作用是什么？
   转为 Vue 应用程序开发的状态管理模式，它采用集中式储存管理应用的所有组件的状态，
@@ -304,13 +337,13 @@ Vue
   是用一些超链接来实现页面切换和跳转的，在 Vue-Router 单页面应用中，则是路径之间的切换，
   实际上就是组建的切换。路由就是 SPA(单页应用) 的路径管理器。
 5. Vue 的双向绑定是如何实现的？有什么缺点？
-  
+  - v-model
+  Vue 的双向绑定是语法糖
 
 6. Computed 计算属性的用法？跟Methods 的区别。
-  -
-  -区别 methods 是一种交互方法，需要人为出触发。methods 没有缓存，只会在每次调用的时候执行。
-       computed 是在检测到 data 数据变化时自动触发的。而且 computed 是带缓存的，
-       只有其引用的响应式属性发生改变时才会重新计算。
+  - methods 是非响应式的一种交互方法，需要人为出触发。methods 没有缓存，只会在每次调用的时候执行。
+  - computed 是响应式的计算属性，在检测到 data 数据变化时自动触发的。而且 computed 是带缓存的，
+  只有其引用的响应式属性发生改变时才会重新计算。
       
 
 //
@@ -324,6 +357,28 @@ Vue
   -归并排序
 
 2. 二分查找法
+  前提是个有序数组
+  var Arr = [...]
+  function binary(find, arr, low, high){
+    if(low <= high) {
+      if(arr[low] === find) {
+        return low
+      }
+      if(arr[high] === find) {
+        return high
+      }
+      var min = Math.ceil((high + low) / 2)
+      if(arr[mid] === find) {
+        return mid
+      } else if (arr[mid] > find) {
+        return binary(find,arr,low,mid-1)
+      } else {
+        return binary(find,arr,mid+1,high)
+      }
+    }
+    return -1
+  }
+  binary(X, Arr, 0, Arr.length-1)
 
 3. 反转二叉树
   暂时不会没关系
@@ -332,9 +387,13 @@ Vue
 //
 安全
 1. 什么是 XSS　攻击？如何预防？
+  通过对网页注入可执行的代码且成功的被浏览器执行，达到攻击的目的。
+  预防方法使用字符过滤。
 
 2. 什么是 CSRF 攻击？ 如何预防？
-
+  比如用户登陆了网页qq，随后切换到了一个恶意网站，恶意网站向用户提出加好友的申请，用户在不知不觉中加了好友。
+  预防方法有 验证 http referer字段
+  或者在请求地址添加 token 并验证
 
 //
 Webpack
