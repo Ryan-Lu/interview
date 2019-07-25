@@ -6,7 +6,7 @@
 
 ### HTML
 1. (必考) 你是如何理解HTML语义化的？
-    - 根据内容选择合适的标签，便于阅读和书写，举例：段落用 p，边栏用 aside，主要内容用 main 标签。
+    - 根据内容选择合适的标签，便于阅读和书写，举例：边栏用 aside，主要内容用 main 标签。
 
 2. meta viewport 是做什么用的，怎么写？
     - 背：
@@ -169,6 +169,9 @@
     缺点：JSON 不支持 函数、引用、undefined..
 
 9. 如何实现数组去重
+
+    - 有一个数字 a，再声明一个空对象 b，之后开始 for 循环遍历数组，如果 a[i] in b 是 true 就什么也不做，如果不是，则 b [a[i]] = true 
+    再 console.log(object.keys(b)) 就可以的到去完重的数组了。
    
     - Set 去重
     Array.from(new Set(a))
@@ -187,9 +190,14 @@
    a.__proto__ === Array.prototype
    push 就是沿着 a.__proto__ 找到的，也就是 Array.prototype.push
    Array.prototype 就是 a 的原型(__proto__)
-12. ES6 中的 class ?
+12. ES6 中的 class、let、const ?
 
-    定义类，把 class 看成一个特殊的函数。
+    class 定义类，把 class 看成一个特殊的函数。
+
+    var 是全局变量
+    let 是局部变量
+    const 是常量
+    并且都不可以重复声明
 
 13. JS 如何实现继承?
     - 原型链
@@ -290,14 +298,13 @@
 4. Cookie 是什么？ Session 是什么？
 
     - Cookie
+    存在客户端，每次请求都要带上。
     HTTP 响应通过 Set-Cookie 设置 Cookie
     浏览器访问指定域名时必须要带上 Cookie 作为 Request Header
-    Cookie 一般用来记录用户数据
-
+    Cookie 一般用来记录用户数据。
     - Session
-    Session 是服务器端的内存 (数据)
-    Session 一般通过在 Cookie 里记录 SessionID 实现
-    SessionID 一般是随机数
+    Session 存在服务器，用来记录会话数据。
+    SessionID 一般是随机数。
 5. LocalStorage 和 Cookie 的区别是什么？
 
     - Cookie 会随请求被发到服务器上，而 LocalStorage 不会。
@@ -321,12 +328,12 @@
 1. (必考) Vue 有哪些生命周期钩子函数？
 
     - beforeCreate 在实例初始化之后，数据观测（data observer）和 event/watcher 事件配置之前被调用。
-    - created 在实例创建完成后被立即调用。在这一步，实力已经完成以下配置：数据观测，属性和方法的运算，
+    - **created** **请求数据(越早越好)**，在实例创建完成后被立即调用。在这一步，实力已经完成以下配置：数据观测，属性和方法的运算，
     watch/event 事件回调。
     然而，挂载阶段还没开始，$el 属性目前不可见。
     - beforeMount 在挂载开始之前被调用：相关的 render 函数首次被调用。
     该钩子在服务器端渲染期间不被调用。
-    - mounted el 被新创建的 vm.$el 替换，并挂载到实例上去之后调用该钩子。如果 root 实例挂载了一个文档内元素，
+    - **mounted** **初始化 echarts 这种需要与页面 DOM 进行交互的操作**，el 被新创建的 vm.$el 替换，并挂载到实例上去之后调用该钩子。如果 root 实例挂载了一个文档内元素，
     当 mounted 被调用时 vm.$el 也在文档内。
     - beforeUpdate 数据更新时调用，发生在虚拟 DOM 打补丁之前。这里合适在更新之前访问现有的 DOM，
     比如手动移除已添加的事件监听器。
@@ -341,7 +348,9 @@
     - 新增 errorCaptured 当捕获一个来自子孙组件的错误时被调用。此钩子会收到三个参数：错误对象、
     发生错误的组件实例以及一个包含错误来源信息的字符串。此钩子可以返回 false 以阻止该错误继续向上传播。
 2. (必考) Vue 如何实现组件通信？
-    - 父子通信 Prop 传递数据、v-on 绑定自定义事件
+    - 父子通信 Prop 传递数据、v-on 绑定自定义事件，
+    
+      子组件调用父组件 $emit()
     - 爷孙通信
     - 非父子通信 new vue（） 作为 eventbus（）
 
@@ -354,13 +363,68 @@
     是用一些超链接来实现页面切换和跳转的，在 Vue-Router 单页面应用中，则是路径之间的切换，
     实际上就是组建的切换。路由就是 SPA(单页应用)的路径管理器。
 5. Vue 的双向绑定是如何实现的？有什么缺点？
-    - v-model
-    Vue 的双向绑定是语法糖
+
+      v-model
+
+      用在字段绑定数据上
+
+      Vue 的双向绑定是语法糖
 
 6. Computed 计算属性的用法？跟Methods 的区别。
     - methods 是非响应式的一种交互方法，需要人为出触发。methods 没有缓存，只会在每次调用的时候执行。
-    - computed 是响应式的计算属性，在检测到 data 数据变化时自动触发的。而且 computed 是带缓存的，
-    只有其引用的响应式属性发生改变时才会重新计算。
+    - computed 是响应式的计算属性，在检测到 data 数据变化时自动触发的。而且 computed 是带缓存的，只有其引用的响应式属性发生改变时才会重新计算。
+7. Vue 的响应原理？
+    
+    用了 object define property 这个方法
+8. Vuex
+
+    为 vuejs 开发的状态管理模式，它可以集中的管理应用程序所有组件的状态，并以一定的规则保证状态以一种可被预测的方式发生变化。
+
+9. vue-router
+
+
+
+
+### jQuery
+1. jQuery 库中的 $() 是什么？
+
+    $() 函数是 jQuery() 函数的别称，通过这个来实现 DOM 元素选取
+2. body中的onload()函数和jQuery中document.ready()有什么区别？
+    - 我们可以在页面中使用多次document.ready()，但只能使用一次onload()。
+
+    - document.ready()函数在页面DOM元素加载完以后就会被调用，而onload()函数则要在所有的关联资源（包括图像、音频）加载完毕后才会调用。
+3. 你是如何将一个 HTML 元素添加到 DOM 树中的？
+    
+    用 appendTo() 方法。
+4. $(this) 和 this 关键字在 jQuery 中有何不同？
+
+    $(this) 返回一个 jQuery 对象，你可以对它调用多个 jQuery 方法。而 this 代表当前元素，表示上下文中的当前 DOM 元素。你不能对它调用 jQuery 方法。
+5. 如何使用jQuery来提取一个HTML 标记的属性？
+
+    attr() 方法被用来提取任意一个HTML元素的一个属性的值。
+6.  jQuery中 detach() 和 remove() 方法的区别是什么？
+
+    主要不同在于 detach 后所有事件和方法会保留下来, 因此它可以被取消解除, 而 remove 方法则会移除所有事件和节点。
+7. 你要是在一个 jQuery 事件处理程序里返回了 false 会怎样？
+
+    通常用于阻止事件冒泡。
+
+
+
+### nodejs
+
+### react
+
+
+### Webpack
+1. 转译出的文件太大怎么办？
+
+    - 使用 code split
+     写法 import('xxx').then(xxx => {console.log(xxx)})
+   xxx 模块就是按需加载的。
+2. 转移速度慢怎么办？
+
+3. 写过 Webpack loader 吗？
       
 
 
@@ -401,11 +465,14 @@
     ```
 3. 反转二叉树
 
-    暂时不会没关系
+    暂时不会
+4. 数据结构
+    
+    常见的有数组、队列和栈。
 
 
-//
-安全
+
+### 安全
 1. 什么是 XSS　攻击？如何预防？
 
     通过对网页注入可执行的代码且成功的被浏览器执行，达到攻击的目的。
@@ -419,22 +486,12 @@
     预防方法有 验证 http referer字段
     或者在请求地址添加 token 并验证
 
-//
-Webpack
-1. 转译出的文件太大怎么办？
-
-    - 使用 code split
-     写法 import('xxx').then(xxx => {console.log(xxx)})
-   xxx 模块就是按需加载的。
-2. 转移速度慢怎么办？
-
-3. 写过 Webpack loader 吗？
 
 
-//
+### 其他
 1. 从输入 url 到页面展现之间发生了什么？
 
-    DNS 查询
+    DNS 查询 (映射IP)
 
     建立 TCP 链接 (三次握手：建立连接、服务器收到 SYN 报文段、客户端收到 SYN+ACK 报文段。)
     
@@ -458,6 +515,38 @@ Webpack
     渲染 DOM 树
     渲染样式树
     执行 JS
-2. 你遇到过最难的问题？
+2. MVC了解吗？
+    - M：model 对象存储有关的放在这层
+    - V：view 试图相关的放在这层
+    - C：controler 数据处理相关的放在这层
 
-3. 你的缺点和优点？
+### **项目介绍**
+1. vue-admin
+    
+    **基本介绍：**
+    使用了 vuecli 初始化了一个 vue
+    项目，用到 vue-router 来管理系统的路由，用 vuex 集中管理系统的数据，添加了 element-ui 作为 ui 库，还使用了 echarts 来做图表。
+
+    **具体各页面内容：**
+    dashboard 页面里，用到了 echarts 图表来展示相关的信息。monitor 页面是列表页，用了 element-ui 的 table 组件做出的表格，通过 axios 封装请求从后端拿到数据再呈现再列表上，还用 vue-router 做出了 404 页面和登录注册页面及功能。
+
+    **如何管理文件：**
+    在src 文件夹下面，assets 用来存储图片和 全局 css，views 里放的是个页面组件，components 里面是与业务相关的组件，layouts 用来存放布局组件，
+    router 是路由配置，store 是配置 vuex，
+    剩下就是 main.js 和 app.vue。
+
+    **具体如何使用 vuex**
+
+    **具体如何使用 vue-router**
+
+
+### 闲聊
+1. 你遇到过最难的问题？
+       
+
+2. 你的缺点和优点？
+    
+    缺点：工作经验还比较少。
+
+    优点：有耐心，比较细心。
+
