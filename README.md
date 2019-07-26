@@ -436,8 +436,25 @@
 ### 算法
 1. 排序算法
     - 冒泡排序
-    - 选择排序
-    - 技术排序
+      ```javascript
+      const list = [2, 1, 6, 2, 7, 5]
+      var sort1 = function(list) {
+        for (let j = 0; j < list.length - 1; j++) {
+            for (let i = 0; i < list.length - 1; i++) {
+                const currentVal = list[i]
+                const nextVal = list[i + 1]
+                if (currentVal > nextVal) {
+                    list[i] = nextVal
+                    list[i + 1] = currentVal
+                }
+            }
+        }
+        return list
+      }
+      var result = sort1(list)
+      console.log(result)
+      ```
+    - 
     - 快速排序
     - 插入排序
     - 归并排序
