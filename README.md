@@ -76,7 +76,7 @@
    .clearfix{
        zoom: 1;/* 兼容IE*/
    }
-7.css3 动画
+7. css3 动画
    - @keyframe XXX {
     from{} to{}}
     animation: XXX 3s;
@@ -179,6 +179,8 @@
   function trim(string) {
     return string.replace(/^\s+|\s+$/,'')
   }
+  
+  正则是用来匹配数据的。
 
 11. JS原型是什么？
 
@@ -379,9 +381,12 @@
 8. Vuex
 
     为 vuejs 开发的状态管理模式，它可以集中的管理应用程序所有组件的状态，并以一定的规则保证状态以一种可被预测的方式发生变化。
+    
+    在 store 文件中引入vue 和 vuex，通过 **state** 存储数据，**mutations** 修改数据，**actions** 提交修改数据的请求，每个组件通过 **getter** 获得数据。
 
 9. vue-router
 
+    引入各组件，然后再通过对象的方式 {path：，component：，} 来配置路由跟组件的匹配。
 
 
 
