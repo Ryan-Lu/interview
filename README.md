@@ -202,6 +202,33 @@
     并且都不可以重复声明
 
 13. JS 如何实现继承?
+    - 用 class 继承
+    ```javascript
+    class Dog extends Animal{
+      consturctor() {
+        super()
+      }
+    }
+    ```
+    - 不用 class 继承
+    ```javascript
+    function Aminal() {
+      this.a = 1
+    }
+    Aminal.prototype.move = function() {}
+
+    function Dog() {
+      Aminal.apply(this,arguments)
+      this.d = 2
+    }
+
+    let f = function() {
+      f.prototype = Animal.prototype
+      Dog.prototype = new f()
+    }
+
+    Dog.prototype.consturctor = Dog
+    ```
     - 原型链
     ``` JavaScript
     function Animal() {
@@ -240,6 +267,38 @@
     }
     var lu = new Human()
     ```
+    
+14. 函数节流和函数防抖
+    - 函数节流
+    ```javascript
+    function fn() {}
+    var cd = false
+    button.onclick = function() {
+      if(cd) {
+        console.log('该技能正在冷却')
+      } else {
+        fn()
+        cd = true
+        var timeId = setTimeout(() => {
+          ed = false
+        },3000)
+      }
+    }
+    ```
+    - 函数防抖 (常用于搜索输入框是弹出的候选项)
+    ```javascript
+     var timeId = null
+     button.onclick = function(){
+       if(timeId) {
+         window.clearTimeout(timeId)
+       }
+       timeId = setTimeout(() => {
+         fn()
+         timeId = null
+       }, 500)
+     }
+     ```
+ 15. map, reducer, filter,Promise/promise.all()/promise.race() MDN
 
 ### DOM
 1. DOM 事件模型是什么？
@@ -260,11 +319,44 @@
     - 模拟 swipe 事件：记录两次 touchmove 的位置差，如果后一次在前一次的右边，说明向右了。
 3. 事件委托是什么？有什么好处？
 
+    ```javascript
+    ul.addEventListener('click', function(e) {
+      if(e.target.tagName.toLowerCase() === 'li') {
+        console.log('点击了 li')
+      }
+    })
+    ```
+    
     通过监听一个父元素，来得知触发事件的子元素或者是给不同的子元素绑定事件，这就是事件委托。
     - 优点：
     可以监听动态生成的子元素。
     减少监听次数，从而提升速度。
+4. 用 mouse 事件写一个可以拖拽的 div
+    ```javascript
+    var dragging = false
+    var position = null
 
+    xx.addEventListener('mousedown', function(e) {
+      dragging = true
+      position = [e.clientX, e.clientY]
+    })
+
+    document.addEventListener('mousemove', function(e) {
+      if(dragging === false) {return}
+      const y = e.clientY
+      const deltaX = x - position[0]
+      const deltaY = y - position[1]
+      const left = parseInt(xx.style.left || 0)
+      const top = parseInt(xx.style.top || 0)
+      xx.style.left = left + deltaX + 'px'
+      xx.style.top = top + deltaY + 'px'
+      position = [x, y]
+    })
+
+    document.addEventListener('mouseup', function(e) {
+      dragging = false
+    })
+    ```
 
 ### HTTP
 1. HTTP 状态码知道那些？
@@ -372,7 +464,8 @@
 
       Vue 的双向绑定是语法糖
 
-6. Computed 计算属性的用法？跟Methods 的区别。
+6. Computed 计算属性的用法？跟 Methods watch 的区别。
+    - watch 是监听属性，没有缓存，会在监听的值发生变化时执行回调。
     - methods 是非响应式的一种交互方法，需要人为出触发。methods 没有缓存，只会在每次调用的时候执行。
     - computed 是响应式的计算属性，在检测到 data 数据变化时自动触发的。而且 computed 是带缓存的，只有其引用的响应式属性发生改变时才会重新计算。
 7. Vue 的响应原理？
