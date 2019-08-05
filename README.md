@@ -56,7 +56,7 @@
 5. BFC 是什么？
     - overflow：hidden；清除浮动/取消父子 margin 合并
     - .clearfix::after {
-      content: "\0020";
+      content: "";
       display: block;
       height: 0;
       clear: both;
@@ -454,7 +454,7 @@
 
 3. Vuex 的作用是什么？
   
-    转为 Vue 应用程序开发的状态管理模式，它采用集中式储存管理应用的所有组件的状态，并以相应的规则保证状态以一种可以测的方式发生变化。
+    专为 Vue 应用程序开发的状态管理模式，它采用集中式储存管理应用的所有组件的状态，并以相应的规则保证状态以一种可以测的方式发生变化。
     (例如购物车页面)
 4. VueRouter 路由是什么？
     Vue 的单页面应用是基于路由和组件的，路由用于设定访问路径，并将路径和组件映射起来。传统的页面应用，
@@ -536,8 +536,8 @@
       ```javascript
       const list = [2, 1, 6, 2, 7, 5]
       var sort1 = function(list) {
-        for (let j = 0; j < list.length - 1; j++) {
-            for (let i = 0; i < list.length - 1; i++) {
+        for (let j = 0; j < list.length; j++) {
+            for (let i = j + 1; i < list.length; i++) {
                 const currentVal = list[i]
                 const nextVal = list[i + 1]
                 if (currentVal > nextVal) {
